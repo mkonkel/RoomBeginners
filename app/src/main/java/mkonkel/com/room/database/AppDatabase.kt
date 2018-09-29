@@ -4,9 +4,11 @@ import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
+import mkonkel.com.room.database.converter.DateTypeConverter
 import mkonkel.com.room.database.dao.UserDao
 import mkonkel.com.room.database.data.PrepopulateData
 import mkonkel.com.room.database.entity.User
@@ -15,6 +17,7 @@ import mkonkel.com.room.database.entity.User
         entities = [User::class],
         version = AppDatabase.DB_VERSION
 )
+@TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
