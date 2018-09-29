@@ -23,7 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
     companion object {
-        const val DB_VERSION = 1
+        const val DB_VERSION = 2
         const val DB_NAME = "application.db"
 
         @Volatile
@@ -37,7 +37,10 @@ abstract class AppDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
                 Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DB_NAME)
                         .addCallback(dbCreateCallback(context))
+                        .addMigrations(Migrations.MIGRATION_1_2)
                         .build()
+
+
 
         private fun dbCreateCallback(context: Context) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {

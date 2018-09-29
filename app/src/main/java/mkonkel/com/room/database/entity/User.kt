@@ -18,10 +18,10 @@ data class User(
         var birthday: LocalDate?,
 
         @Embedded(prefix = "home_")
-        var homeAddress: Address,
+        var homeAddress: Address?,
 
         @Embedded(prefix = "office_")
-        var officeAddress: Address,
+        var officeAddress: Address?,
 
         @ColumnInfo(name = "email")
         var emailAddress: String,
