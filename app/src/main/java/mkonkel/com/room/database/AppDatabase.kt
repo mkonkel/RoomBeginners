@@ -9,21 +9,24 @@ import android.content.Context
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
 import mkonkel.com.room.database.converter.DateTypeConverter
+import mkonkel.com.room.database.dao.BookDao
 import mkonkel.com.room.database.dao.UserDao
 import mkonkel.com.room.database.data.PrepopulateData
+import mkonkel.com.room.database.entity.Book
 import mkonkel.com.room.database.entity.User
 
 @Database(
-        entities = [User::class],
+        entities = [User::class, Book::class],
         version = AppDatabase.DB_VERSION
 )
 @TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+    abstract fun bookDao(): BookDao
 
     companion object {
-        const val DB_VERSION = 2
+        const val DB_VERSION = 3
         const val DB_NAME = "application.db"
 
         @Volatile
@@ -38,16 +41,17 @@ abstract class AppDatabase : RoomDatabase() {
                 Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DB_NAME)
                         .addCallback(dbCreateCallback(context))
                         .addMigrations(Migrations.MIGRATION_1_2)
+                        .addMigrations(Migrations.MIGRATION_2_3)
                         .build()
-
-
 
         private fun dbCreateCallback(context: Context) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 GlobalScope.launch {
-                    getInstance(context).userDao()
-                            .insertUsers(PrepopulateData.users)
+                    val instance = getInstance(context)
+
+                    instance.userDao().insertUsers(PrepopulateData.users)
+                    instance.bookDao().insertBooks(PrepopulateData.books)
                 }
             }
         }

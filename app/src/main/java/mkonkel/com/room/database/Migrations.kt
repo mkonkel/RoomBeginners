@@ -17,4 +17,12 @@ object Migrations {
             database.execSQL("ALTER TABLE `users` ADD COLUMN status INTEGER NOT NULL DEFAULT -1")
         }
     }
+
+    val MIGRATION_2_3: Migration = object : Migration(2, 3) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL(
+                    "CREATE TABLE 'books' ('id' INTEGER NOT NULL, 'user_id' INTEGER, 'title' TEXT, 'author_firstName' TEXT, 'author_lastName' TEXT, FOREIGN KEY('user_id') REFERENCES users('id'), PRIMARY KEY('id'))"
+            )
+        }
+    }
 }

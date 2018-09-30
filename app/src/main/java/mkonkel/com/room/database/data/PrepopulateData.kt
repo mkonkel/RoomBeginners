@@ -1,5 +1,6 @@
 package mkonkel.com.room.database.data
 
+import mkonkel.com.room.database.entity.Book
 import mkonkel.com.room.database.entity.User
 import java.time.LocalDate
 
@@ -47,6 +48,27 @@ object PrepopulateData {
                             postal = "72749"
                     ),
                     status = User.Status.BLOCKED
+            )
+    )
+
+    val books = listOf(
+            Book(
+                    id = 0,
+                    title = "First Book",
+                    author = Book.Author(
+                            firstName = "Adam",
+                            lastName = "Doe"
+                    ),
+                    userId = null
+            ),
+            Book(
+                    id = 0,
+                    title = "Second Book",
+                    author = Book.Author(
+                            firstName = "Alice",
+                            lastName = "Kowalsky"
+                    ),
+                    userId = 1
             )
     )
 }
