@@ -1,9 +1,8 @@
 package mkonkel.com.room.database.data
 
-import mkonkel.com.room.database.entity.Book
-import mkonkel.com.room.database.entity.User
+import mkonkel.com.room.database.entity.book.Book
+import mkonkel.com.room.database.entity.user.User
 import java.time.LocalDate
-
 
 object PrepopulateData {
     val users = listOf(
@@ -59,7 +58,8 @@ object PrepopulateData {
                             firstName = "Adam",
                             lastName = "Doe"
                     ),
-                    userId = null
+                    userId = null,
+                    categoryId = -1
             ),
             Book(
                     id = 0,
@@ -68,7 +68,8 @@ object PrepopulateData {
                             firstName = "Alice",
                             lastName = "Kowalsky"
                     ),
-                    userId = 1
+                    userId = 1,
+                    categoryId = -1
             )
     )
 }

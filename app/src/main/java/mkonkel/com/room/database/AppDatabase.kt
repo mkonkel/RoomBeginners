@@ -12,11 +12,12 @@ import mkonkel.com.room.database.converter.DateTypeConverter
 import mkonkel.com.room.database.dao.BookDao
 import mkonkel.com.room.database.dao.UserDao
 import mkonkel.com.room.database.data.PrepopulateData
-import mkonkel.com.room.database.entity.Book
-import mkonkel.com.room.database.entity.User
+import mkonkel.com.room.database.entity.book.Book
+import mkonkel.com.room.database.entity.book.Category
+import mkonkel.com.room.database.entity.user.User
 
 @Database(
-        entities = [User::class, Book::class],
+        entities = [Book::class, User::class, Category::class],
         version = AppDatabase.DB_VERSION
 )
 @TypeConverters(DateTypeConverter::class)
@@ -26,7 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
 
     companion object {
-        const val DB_VERSION = 3
+        const val DB_VERSION = 4
         const val DB_NAME = "application.db"
 
         @Volatile
@@ -42,6 +43,7 @@ abstract class AppDatabase : RoomDatabase() {
                         .addCallback(dbCreateCallback(context))
                         .addMigrations(Migrations.MIGRATION_1_2)
                         .addMigrations(Migrations.MIGRATION_2_3)
+                        .addMigrations(Migrations.MIGRATION_3_4)
                         .build()
 
         private fun dbCreateCallback(context: Context) = object : Callback() {
@@ -49,7 +51,6 @@ abstract class AppDatabase : RoomDatabase() {
                 super.onCreate(db)
                 GlobalScope.launch {
                     val instance = getInstance(context)
-
                     instance.userDao().insertUsers(PrepopulateData.users)
                     instance.bookDao().insertBooks(PrepopulateData.books)
                 }

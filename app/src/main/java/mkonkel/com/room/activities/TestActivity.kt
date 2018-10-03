@@ -15,13 +15,21 @@ class TestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_test)
 
         val userDao = Injector.provideUserDao(this)
+        val bookDao = Injector.provideBookDao(this)
 
         GlobalScope.launch {
-            val users = userDao.users()
+            val user = userDao.getUserWithBooksById(0)
 
-            users.forEach {
-                Log.d("User", "$it")
-            }
+            val bookWithCategory = bookDao.getBookWithCategory(1)
+//            val booksWithCategories = bookDao.setBooksWithCategories()
+
+            Log.i("User:", "$user")
+
+            Log.i("Book 1:", "${bookWithCategory.book} is ${bookWithCategory.category}")
+
+//            booksWithCategories.forEach {
+//                Log.i("book:", "${it.book} is ${it.category}")
+//            }
         }
     }
 }
