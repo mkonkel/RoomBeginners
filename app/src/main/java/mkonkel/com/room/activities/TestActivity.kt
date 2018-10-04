@@ -18,18 +18,17 @@ class TestActivity : AppCompatActivity() {
         val bookDao = Injector.provideBookDao(this)
 
         GlobalScope.launch {
-            val user = userDao.getUserWithBooksById(0)
+            val user = userDao.getUserWithBooksById(1)
 
             val bookWithCategory = bookDao.getBookWithCategory(1)
-//            val booksWithCategories = bookDao.setBooksWithCategories()
+            val booksWithCategories = bookDao.setBooksWithCategories()
 
             Log.i("User:", "$user")
 
             Log.i("Book 1:", "${bookWithCategory.book} is ${bookWithCategory.category}")
-
-//            booksWithCategories.forEach {
-//                Log.i("book:", "${it.book} is ${it.category}")
-//            }
+            booksWithCategories.forEach {
+                Log.i("book:", "${it.book} is ${it.category}")
+            }
         }
     }
 }

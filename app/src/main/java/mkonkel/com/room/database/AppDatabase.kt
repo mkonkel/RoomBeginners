@@ -10,6 +10,7 @@ import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
 import mkonkel.com.room.database.converter.DateTypeConverter
 import mkonkel.com.room.database.dao.BookDao
+import mkonkel.com.room.database.dao.CategoryDao
 import mkonkel.com.room.database.dao.UserDao
 import mkonkel.com.room.database.data.PrepopulateData
 import mkonkel.com.room.database.entity.book.Book
@@ -25,6 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
     abstract fun bookDao(): BookDao
+    abstract fun categoriesDao(): CategoryDao
 
     companion object {
         const val DB_VERSION = 4
@@ -51,6 +53,7 @@ abstract class AppDatabase : RoomDatabase() {
                 super.onCreate(db)
                 GlobalScope.launch {
                     val instance = getInstance(context)
+                    instance.categoriesDao().insertCategories(PrepopulateData.categories)
                     instance.userDao().insertUsers(PrepopulateData.users)
                     instance.bookDao().insertBooks(PrepopulateData.books)
                 }

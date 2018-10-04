@@ -1,6 +1,7 @@
 package mkonkel.com.room.database.data
 
 import mkonkel.com.room.database.entity.book.Book
+import mkonkel.com.room.database.entity.book.Category
 import mkonkel.com.room.database.entity.user.User
 import java.time.LocalDate
 
@@ -59,7 +60,7 @@ object PrepopulateData {
                             lastName = "Doe"
                     ),
                     userId = null,
-                    categoryId = -1
+                    categoryId = 1
             ),
             Book(
                     id = 0,
@@ -69,7 +70,16 @@ object PrepopulateData {
                             lastName = "Kowalsky"
                     ),
                     userId = 1,
-                    categoryId = -1
+                    categoryId = 2
             )
+    )
+
+    val categories = listOf(
+            Category(id = 0, name = Category.Name.SCIENCE),
+            Category(id = 0, name = Category.Name.ROMANCE),
+            Category(id = 0, name = Category.Name.FANTASY),
+            Category(id = 0, name = Category.Name.DRAMA),
+            Category(id = 0, name = Category.Name.COMEDY),
+            Category(id = 0, name = Category.Name.UNKNOWN)
     )
 }
