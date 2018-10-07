@@ -3,6 +3,7 @@ package mkonkel.com.room.database.dao
 import android.arch.persistence.room.*
 import mkonkel.com.room.database.entity.user.User
 import mkonkel.com.room.database.entity.user.UserWithAllBooks
+import javax.security.auth.Subject
 
 @Dao
 interface UserDao {
@@ -30,4 +31,7 @@ interface UserDao {
     @Transaction
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
     fun getUserWithBooksById(userId: Long): UserWithAllBooks
+
+//    @Query("SELECT * FROM users INNER JOIN subjects ON users_with_subjects.user_id = users.id INNER JOIN books ON subject.id = users_with_subjects.subject_id WHERE users_with_subjects.user_id = :userId")
+//    fun getSubjectsForUser(userId: Long): List<Subject>
 }

@@ -6,6 +6,7 @@ import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import mkonkel.com.room.database.entity.book.Book
 import mkonkel.com.room.database.entity.book.BookWithCategory
+import mkonkel.com.room.database.entity.book.BookWithCategorySimple
 
 @Dao
 interface BookDao {
@@ -23,4 +24,7 @@ interface BookDao {
 
     @Query("SELECT * FROM books JOIN categories ON books.category_id = categories.id")
     fun setBooksWithCategories(): List<BookWithCategory>
+
+    @Query("SELECT *, categories.name AS category FROM books JOIN categories ON books.category_id = categories.id")
+    fun setBooksWithCategoriesSimple(): List<BookWithCategorySimple>
 }

@@ -3,6 +3,7 @@ package mkonkel.com.room
 import android.content.Context
 import mkonkel.com.room.database.AppDatabase
 import mkonkel.com.room.database.dao.BookDao
+import mkonkel.com.room.database.dao.SubjectDao
 import mkonkel.com.room.database.dao.UserDao
 
 object Injector {
@@ -13,5 +14,9 @@ object Injector {
 
     fun provideBookDao(context: Context): BookDao {
         return AppDatabase.getInstance(context).bookDao()
+    }
+
+    fun provideSubjectDao(context: Context): SubjectDao {
+        return AppDatabase.getInstance(context).subjectDao()
     }
 }
