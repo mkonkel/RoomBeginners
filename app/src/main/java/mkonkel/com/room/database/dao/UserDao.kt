@@ -38,6 +38,9 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
     fun getUsersBooksTitles(userId: Long): UserWithAllBooksTitle
 
+    @Query("SELECT * FROM users WHERE users.firstName LIKE :firstName OR users.lastName LIKE :lastName")
+    fun getUsersByName(firstName: String, lastName: String): List<User>
+
     @Query("SELECT * FROM subjects INNER JOIN users_with_subjects AS uws ON uws.subject_id = subjects.id INNER JOIN users ON users.id = uws.user_id WHERE users.id = :userId")
     fun getSubjectsForUser(userId: Long): List<Subject>
 

@@ -22,6 +22,7 @@ class TestActivity : AppCompatActivity() {
             val usersBooks = userDao.getUsersBooksSimple(1)
             val usersBooksTitles = userDao.getUsersBooksTitles(1)
             val subjectsForUser = userDao.getSubjectsForUser(1)
+            val usersWithGivenParameters = userDao.getUsersByName("Mark", "Doe")
 
             val bookWithCategory = bookDao.getBookWithCategory(1)
             val booksWithCategories = bookDao.setBooksWithCategories()
