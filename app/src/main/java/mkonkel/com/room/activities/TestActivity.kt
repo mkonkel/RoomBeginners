@@ -19,6 +19,8 @@ class TestActivity : AppCompatActivity() {
 
         GlobalScope.launch {
             val user = userDao.getUserWithBooksById(1)
+            val usersBooks = userDao.getUsersBooksSimple(1)
+            val usersBooksTitles = userDao.getUsersBooksTitles(1)
             val subjectsForUser = userDao.getSubjectsForUser(1)
 
             val bookWithCategory = bookDao.getBookWithCategory(1)
