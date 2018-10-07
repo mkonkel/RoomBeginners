@@ -16,11 +16,10 @@ class TestActivity : AppCompatActivity() {
 
         val userDao = Injector.provideUserDao(this)
         val bookDao = Injector.provideBookDao(this)
-        val borrowDao = Injector.provideSubjectDao(this)
 
         GlobalScope.launch {
             val user = userDao.getUserWithBooksById(1)
-//            val usersWithSubjects =
+            val subjectsForUser = userDao.getSubjectsForUser(1)
 
             val bookWithCategory = bookDao.getBookWithCategory(1)
             val booksWithCategories = bookDao.setBooksWithCategories()
