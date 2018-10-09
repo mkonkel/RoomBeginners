@@ -1,11 +1,15 @@
 package mkonkel.com.room.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
 import mkonkel.com.room.Injector
 import mkonkel.com.room.R
+import mkonkel.com.room.activities.liveData.LiveDataTestActivity
+import mkonkel.com.room.activities.rxJava.RxJavaTestActivity
 import mkonkel.com.room.database.dao.BookDao
 import mkonkel.com.room.database.dao.SubjectDao
 import mkonkel.com.room.database.dao.UserDao
@@ -25,6 +29,17 @@ class TestActivity : AppCompatActivity() {
             runAllUserDao(userDao)
             runAllBookDao(bookDao)
             runAllSubjectDao(subjectDao)
+        }
+
+        val liveData: Button = findViewById(R.id.btn_live_data)
+        val rxJava: Button = findViewById(R.id.btn_rx_java)
+
+        liveData.setOnClickListener {
+            startActivity(Intent(this, LiveDataTestActivity::class.java))
+        }
+
+        rxJava.setOnClickListener {
+            startActivity(Intent(this, RxJavaTestActivity::class.java))
         }
     }
 
