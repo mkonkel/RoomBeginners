@@ -23,8 +23,8 @@ interface BookDao {
     fun getBookWithCategory(bookID: Long): BookWithCategory
 
     @Query("SELECT * FROM books JOIN categories ON books.category_id = categories.id")
-    fun setBooksWithCategories(): List<BookWithCategory>
+    fun getBooksWithCategories(): List<BookWithCategory>
 
     @Query("SELECT *, categories.name AS category FROM books JOIN categories ON books.category_id = categories.id")
-    fun setBooksWithCategoriesSimple(): List<BookWithCategorySimple>
+    fun getBooksWithCategoriesSimple(): List<BookWithCategorySimple>
 }
