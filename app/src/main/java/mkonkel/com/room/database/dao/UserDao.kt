@@ -2,6 +2,7 @@ package mkonkel.com.room.database.dao
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import io.reactivex.Flowable
 import mkonkel.com.room.database.entity.classes.Subject
 import mkonkel.com.room.database.entity.user.User
 import mkonkel.com.room.database.entity.user.UserWithAllBooks
@@ -33,6 +34,9 @@ interface UserDao {
 
     @Query("SELECT * FROM users WHERE id = :userId")
     fun user(userId: Long): LiveData<User>
+
+    @Query("SELECT * FROM users WHERE id = :userId")
+    fun userRx(userId: Long): Flowable<User>
 
     @Transaction
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")

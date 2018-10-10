@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
+import formatToString
 import mkonkel.com.room.R
 import mkonkel.com.room.database.entity.user.User
 
@@ -25,12 +26,7 @@ class LiveDataTestActivity : AppCompatActivity() {
             user= it
 
             it?.let {
-                val data = "${it.id} \n ${it.firstName} \n ${it.lastName} \n ${it.fullName} \n ${it.birthday} \n" +
-                        "${it.homeAddress?.city}, ${it.homeAddress?.street}, ${it.homeAddress?.postal} \n" +
-                        "${it.officeAddress?.city}, ${it.officeAddress?.street}, ${it.officeAddress?.postal} \n" +
-                        "${it.emailAddress} \n ${it.phoneNumber} \n ${it.picture}"
-
-                userContent.text = data
+                userContent.text = user.formatToString()
             }
         })
 
