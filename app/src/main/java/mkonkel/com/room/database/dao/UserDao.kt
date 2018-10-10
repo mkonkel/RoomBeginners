@@ -40,7 +40,11 @@ interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
-    fun getUsersBooksTitles(userId: Long): UserWithAllBooksTitle
+    fun getUserWithBooksTitles(userId: Long): UserWithAllBooksTitle
+
+    @Transaction
+    @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
+    fun getUserWithBooksTitlesLiveData(userId: Long): LiveData<UserWithAllBooksTitle>
 
     @Query("SELECT * FROM users WHERE users.firstName LIKE :firstName OR users.lastName LIKE :lastName")
     fun getUsersByName(firstName: String, lastName: String): List<User>
