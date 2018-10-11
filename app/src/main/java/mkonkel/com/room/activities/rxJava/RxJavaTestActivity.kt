@@ -29,7 +29,7 @@ class RxJavaTestActivity : AppCompatActivity() {
 
         var user: User? = null
 
-        userDao.userRx(1)
+        userDao.userRxFlowable(1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {

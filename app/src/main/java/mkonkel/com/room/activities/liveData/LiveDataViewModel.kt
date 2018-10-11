@@ -13,7 +13,7 @@ class LiveDataViewModel(application: Application) : AndroidViewModel(application
     private var userDao: UserDao = Injector.provideUserDao(application)
 
     fun getUser(userId: Long): LiveData<User> {
-        return userDao.user(userId)
+        return userDao.userLiveData(userId)
     }
 
     fun editUser(user: User) {
