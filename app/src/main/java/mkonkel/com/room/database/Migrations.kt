@@ -52,4 +52,12 @@ object Migrations {
             )
         }
     }
+
+    val MIGRATION_5_6: Migration = object : Migration(5, 6) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL(
+                    "ALTER TABLE `users` ADD COLUMN nickName TEXT NOT NULL DEFAULT ''"
+            )
+        }
+    }
 }

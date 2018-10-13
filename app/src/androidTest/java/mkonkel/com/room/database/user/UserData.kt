@@ -9,6 +9,7 @@ object UserData {
             firstName = "Test",
             lastName = "User",
             fullName = "Test User $index",
+//            nickName = "nick$index",
             birthday = LocalDate.parse("198$index-10-10"),
             homeAddress = User.Address(
                     street = "Street",

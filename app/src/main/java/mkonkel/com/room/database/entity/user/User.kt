@@ -15,6 +15,8 @@ data class User(
 
         var fullName: String,
 
+//        var nickName: String,
+
         var birthday: LocalDate?,
 
         @Embedded(prefix = "home_")

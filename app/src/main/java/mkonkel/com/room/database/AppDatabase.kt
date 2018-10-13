@@ -51,6 +51,7 @@ abstract class AppDatabase : RoomDatabase() {
                         .addMigrations(Migrations.MIGRATION_2_3)
                         .addMigrations(Migrations.MIGRATION_3_4)
                         .addMigrations(Migrations.MIGRATION_4_5)
+//                        .addMigrations(Migrations.MIGRATION_5_6)
                         .build()
 
         private fun dbCreateCallback(context: Context) = object : Callback() {

@@ -26,9 +26,9 @@ class MigrationTest {
 
     @Test
     @Throws(Exception::class)
-    fun migration_1_2() {
-        val db_v_1 = testHelper.createDatabase(TEST_DB_NAME, 1)
+    fun migration_5_6() {
+        val db_v_5 = testHelper.createDatabase(TEST_DB_NAME, 5)
 
-        testHelper.runMigrationsAndValidate(TEST_DB_NAME, 2,true, Migrations.MIGRATION_1_2)
+        testHelper.runMigrationsAndValidate(TEST_DB_NAME, 6,true, Migrations.MIGRATION_5_6)
     }
 }
