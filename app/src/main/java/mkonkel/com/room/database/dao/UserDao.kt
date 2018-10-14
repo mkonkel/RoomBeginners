@@ -25,4 +25,7 @@ interface UserDao {
 
     @Query("SELECT * FROM users")
     fun users(): List<User>
+
+    @Query("SELECT * FROM users where users.id = :userId LIMIT 1")
+    fun user(userId: Long): User
 }
