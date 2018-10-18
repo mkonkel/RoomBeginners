@@ -5,6 +5,7 @@ import mkonkel.com.room.database.AppDatabase
 import mkonkel.com.room.database.dao.BookDao
 import mkonkel.com.room.database.dao.SubjectDao
 import mkonkel.com.room.database.dao.UserDao
+import mkonkel.com.room.database.dao.abstract.AbstractUserDao
 
 object Injector {
 
@@ -18,5 +19,9 @@ object Injector {
 
     fun provideSubjectDao(context: Context): SubjectDao {
         return AppDatabase.getInstance(context).subjectDao()
+    }
+
+    fun provideAbstractUserDao(context: Context): AbstractUserDao {
+        return AppDatabase.getInstance(context).abstractUserDao()
     }
 }

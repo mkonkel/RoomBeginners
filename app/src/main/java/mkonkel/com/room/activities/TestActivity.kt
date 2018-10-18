@@ -7,6 +7,7 @@ import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
 import mkonkel.com.room.Injector
 import mkonkel.com.room.R
+import mkonkel.com.room.database.entity.user.User
 
 class TestActivity : AppCompatActivity() {
 
@@ -16,6 +17,7 @@ class TestActivity : AppCompatActivity() {
 
         val userDao = Injector.provideUserDao(this)
         val bookDao = Injector.provideBookDao(this)
+        val abstractUserDao = Injector.provideAbstractUserDao(this)
 
         GlobalScope.launch {
             val user = userDao.getUserWithBooksById(1)
@@ -28,6 +30,9 @@ class TestActivity : AppCompatActivity() {
             val booksWithCategories = bookDao.setBooksWithCategories()
             val booksWithCategoriesSimple = bookDao.setBooksWithCategoriesSimple()
 
+            val users = abstractUserDao.getUsers()
+            abstractUserDao.delete(users.first())
+//            abstractUserDao.insert() //some user
 
             Log.d("TestActivity", "Queered")
         }

@@ -13,6 +13,7 @@ import mkonkel.com.room.database.dao.BookDao
 import mkonkel.com.room.database.dao.SubjectDao
 import mkonkel.com.room.database.dao.CategoryDao
 import mkonkel.com.room.database.dao.UserDao
+import mkonkel.com.room.database.dao.abstract.AbstractUserDao
 import mkonkel.com.room.database.data.PrepopulateData
 import mkonkel.com.room.database.entity.book.Book
 import mkonkel.com.room.database.entity.book.Category
@@ -31,6 +32,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
     abstract fun categoriesDao(): CategoryDao
     abstract fun subjectDao(): SubjectDao
+    abstract fun abstractUserDao(): AbstractUserDao
 
     companion object {
         const val DB_VERSION = 5
