@@ -1,4 +1,4 @@
-package mkonkel.com.room.database.entity
+package mkonkel.com.room.database.entity.user
 
 import android.arch.persistence.room.*
 import java.time.LocalDate
