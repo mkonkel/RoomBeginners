@@ -1,15 +1,18 @@
 package mkonkel.com.room.database.user
 
+import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.filters.SmallTest
 import android.support.test.runner.AndroidJUnit4
 import mkonkel.com.room.database.AppDatabase
 import mkonkel.com.room.database.dao.UserDao
+import mkonkel.com.room.database.getValue
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
@@ -19,6 +22,9 @@ import java.io.IOException
 open class UserEntityTest {
     private lateinit var userDao: UserDao
     private lateinit var database: AppDatabase
+
+    @Rule @JvmField
+    val instantTaskExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun createDb() {
@@ -72,5 +78,29 @@ open class UserEntityTest {
         val result = userDao.user(1)
 
         assertNull(result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun insertUserAndReadRx() {
+        val user = UserData.createUserWithIndex(2)
+        userDao.insertUser(user)
+
+        userDao.userRxFlowable(2)
+                .test()
+                .assertValue { result ->
+                    result.firstName.equals(user.firstName)
+                }
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun insertUserAndReadLiveData() {
+        val user = UserData.createUserWithIndex(3)
+        userDao.insertUser(user)
+
+        val result = userDao.userLiveData(3)
+
+        assertEquals(getValue(result).firstName, user.firstName)
     }
 }

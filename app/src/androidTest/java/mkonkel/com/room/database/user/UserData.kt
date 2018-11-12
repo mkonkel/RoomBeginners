@@ -1,6 +1,6 @@
 package mkonkel.com.room.database.user
 
-import mkonkel.com.room.database.entity.User
+import mkonkel.com.room.database.entity.user.User
 import java.time.LocalDate
 
 object UserData {
@@ -9,6 +9,7 @@ object UserData {
             firstName = "Test",
             lastName = "User",
             fullName = "Test User $index",
+//            nickName = "nick$index",
             birthday = LocalDate.parse("198$index-10-10"),
             homeAddress = User.Address(
                     street = "Street",

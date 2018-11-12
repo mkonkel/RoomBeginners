@@ -17,6 +17,13 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+
+    <activity android:name=".activities.liveData.LiveDataTestActivity"
+        android:label="LiveData"
+    />
+    <activity android:name=".activities.rxJava.RxJavaTestActivity"
+        android:label="RxJava2"
+    />
   </application>
 
 </manifest>

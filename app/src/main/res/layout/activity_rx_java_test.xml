@@ -7,28 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".activities.TestActivity">
 
-
-  <Button
-      android:id="@+id/btn_live_data"
+  <TextView
+      android:id="@+id/user_content"
       android:layout_width="match_parent"
-      android:layout_height="80dp"
-      android:text="LiveData"
-      app:layout_constraintBottom_toTopOf="@+id/btn_rx_java"
+      android:layout_height="wrap_content"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      android:layout_marginStart="30dp"
+      android:layout_marginTop="30dp"
+      android:layout_marginBottom="10dp"
   />
 
   <Button
-      android:id="@+id/btn_rx_java"
+      android:id="@+id/btn_change_name"
       android:layout_width="match_parent"
       android:layout_height="80dp"
       android:layout_marginTop="10dp"
       android:layout_marginBottom="30dp"
-      android:text="RxJava"
+      android:text="Change Name"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
   />
-
 
 </android.support.constraint.ConstraintLayout>

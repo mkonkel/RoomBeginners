@@ -1,6 +1,10 @@
 package mkonkel.com.room.database.dao
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import io.reactivex.Flowable
+import io.reactivex.Maybe
+import io.reactivex.Single
 import mkonkel.com.room.database.entity.classes.Subject
 import mkonkel.com.room.database.entity.user.User
 import mkonkel.com.room.database.entity.user.UserWithAllBooks
@@ -30,8 +34,20 @@ interface UserDao {
     @Query("SELECT * FROM users")
     fun users(): List<User>
 
-    @Query("SELECT * FROM users where users.id = :userId LIMIT 1")
+    @Query("SELECT * FROM users WHERE id = :userId")
     fun user(userId: Long): User
+
+    @Query("SELECT * FROM users WHERE id = :userId")
+    fun userLiveData(userId: Long): LiveData<User>
+
+    @Query("SELECT * FROM users WHERE id = :userId")
+    fun userRxFlowable(userId: Long): Flowable<User>
+
+    @Query("SELECT * FROM users WHERE id = :userId")
+    fun userRxMaybe(userId: Long): Maybe<User>
+
+    @Query("SELECT * FROM users WHERE id = :userId")
+    fun userRxSingle(userId: Long): Single<User>
 
     @Transaction
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
@@ -39,7 +55,11 @@ interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
-    fun getUsersBooksTitles(userId: Long): UserWithAllBooksTitle
+    fun getUserWithBooksTitles(userId: Long): UserWithAllBooksTitle
+
+    @Transaction
+    @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
+    fun getUserWithBooksTitlesLiveData(userId: Long): LiveData<UserWithAllBooksTitle>
 
     @Query("SELECT * FROM users WHERE users.firstName LIKE :firstName OR users.lastName LIKE :lastName")
     fun getUsersByName(firstName: String, lastName: String): List<User>
