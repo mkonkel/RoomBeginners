@@ -32,7 +32,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
     abstract fun categoriesDao(): CategoryDao
     abstract fun subjectDao(): SubjectDao
-    abstract fun abstractUserDao(): AbstractUserDao
 
     companion object {
         const val DB_VERSION = 5

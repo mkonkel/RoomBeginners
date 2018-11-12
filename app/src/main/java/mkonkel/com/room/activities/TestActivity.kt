@@ -50,13 +50,6 @@ class TestActivity : AppCompatActivity() {
             Timber.i("$it")
         }
 
-        Timber.i("---- User with Books - userId: 1 ----")
-        val userWithBooks = userDao.getUserWithBooksById(1)
-        Timber.i("${userWithBooks.user}")
-        userWithBooks.books.forEach {
-            Timber.i("$it")
-        }
-
         Timber.i("---- Users Books Titles -userId: 1 ----")
         val usersBooksTitles = userDao.getUserWithBooksTitles(1)
         Timber.i("${usersBooksTitles.user}")
